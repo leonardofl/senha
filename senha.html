@@ -38,15 +38,7 @@ function busca(k) { //função que verifica se o nº aleatório gerado não é repetid
  return result; 
 }
 
-function teclou(event) {
- tecla=String.fromCharCode(event.which);
- if ((tecla=='q')||(tecla=="Q")) mudarcor();
- if (tecla==1) window.open ('ajuda.html', 'Ajuda', 'toolbar=no, status=no, width=700 height=350'); 
- if (tecla==2) window.location.reload();
- if (tecla==3) window.open ('sobre.html', 'Sobre', 'toolbar=no, status=no, width=450 height=140');
-}
-
-function tela(){ //desenha a situação inicial da coluna esquerda da tela 
+function montarTela(){ //desenha a situação inicial da coluna esquerda da tela 
  document.write ("<br>");
  for (i=1;i<6;i++) 
   document.write ("<img src='figs/senha"+i+".gif' name='sen'>");
@@ -61,12 +53,14 @@ function tela(){ //desenha a situação inicial da coluna esquerda da tela
   document.write ("&nbsp;&nbsp;&nbsp;&nbsp;");
   for (j=1;j<5;j++) document.write ("<img src='figs/vazio.gif' name='ponto'>");
  } 
-}
-
-function mudarcor() {
- cor++;
- if (cor==6) cor=0;
- selec.src="figs/"+cores[cor]+".gif";
+ document.write("<p>Escolha aqui sua cor:</br>");
+ document.write("<img src='figs/"+cores[0]+".gif' onclick='cor=0'>");
+ document.write("<img src='figs/"+cores[1]+".gif' onclick='cor=1'>");
+ document.write("<img src='figs/"+cores[2]+".gif' onclick='cor=2'>");
+ document.write("<img src='figs/"+cores[3]+".gif' onclick='cor=3'>");
+ document.write("<img src='figs/"+cores[4]+".gif' onclick='cor=4'>");
+ document.write("<img src='figs/"+cores[5]+".gif' onclick='cor=5'>");
+ document.write("</p>");
 }
 
 function quadraclk(num,fila) {
@@ -134,18 +128,12 @@ function mostrar() { //mostra a senha
 <table width="100%" height="387" border="1">
   <tr align="center" valign="top"> 
     <td height="288" colspan="2"> 
-      <script>tela();</script>
+      <script>montarTela();</script>
+      <p><input type="button" name="efetuar" value="Completar jogada" onclick="if (jogada<11) jogar()"></p>
+      <p><input type="button" value="Novo jogo" onclick="window.location.reload()"></p>
+      <p><a href="ajuda.html">Ajuda</a></p>
+      <p><a href="sobre.html">Sobre</a></p>
     </td>
-	<td width="38%" valign="top">
-      <p>&nbsp;</p><p>&nbsp;</p>
-      <p><font size="4">Cor atual:</font><font color="#FFFFFF">.....</font>
-	  <img src="figs/amarelo.gif" name="selec"> <br><br>
-      <input type="button" name="cambio" value="Trocar Cor (q)" onClick="mudarcor()"></p>
-      <p><input type="button" name="efetuar" value="Efetuar Jogada" onClick="if (jogada<11) jogar()"></p>
-      <p>1 - Ajuda<br><br>
-      2 - Novo Jogo<br><br>
-      3- Sobre</p>
-   </td>
   </tr>
 </table>
 
